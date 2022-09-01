@@ -1,1 +1,1 @@
-gcloud compute instances delete vm-1 
+gcloud compute instances delete vm-1 --delete-disks=all
