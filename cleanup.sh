@@ -1,0 +1,1 @@
+gcloud compute instances delete vm-1 
