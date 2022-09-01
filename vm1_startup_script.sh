@@ -44,8 +44,7 @@ gcloud compute instances create vm-2 \
 --network-interface=subnet=vm-2-build-subnet,no-address \
 --metadata=startup-script="cat /prep.txt > result.txt && echo $RANDOM >> /result.txt" \
 --no-service-account --no-scopes \
---create-disk=auto-delete=yes,boot=yes,device-name=sda,image=projects/opensuse-cloud/global/images/opensuse-leap-15-4-v20220722-x86-64,mode=rw,size=10,type=projects/midietz-one/zones/europe-west3-a/diskTypes/pd-balanced \
---disk=auto-delete=no,boot=no,device-name=disk-1,name=disk-1 \
+--disk=auto-delete=no,boot=yes,device-name=disk-1,name=disk-1 \
 --shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring 
 
 # Wait (in real life we would check the output of the vm-2)
@@ -62,6 +61,7 @@ gcloud compute instances attach-disk vm-1 \
 sudo mount -t xfs -o nouuid /dev/sdb3 /mnt/builddisk
 
 # Print result
+echo "Results:"
 cat /mnt/builddisk/result.txt
 
 

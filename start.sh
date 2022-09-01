@@ -9,6 +9,5 @@ gcloud compute instances create vm-1 \
 --create-disk=auto-delete=yes,boot=yes,device-name=sda,image=projects/opensuse-cloud/global/images/opensuse-leap-15-4-v20220722-x86-64,mode=rw,size=10,type=projects/midietz-one/zones/europe-west3-a/diskTypes/pd-balanced \
 --shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring 
 
-# Disk-1 could also be added directly. I only had the issue that the disk was then, somehow, used as boot disk. 
-#--create-disk=device-name=sdb,boot=no,mode=rw,name=disk-1,image=projects/opensuse-cloud/global/images/opensuse-leap-15-4-v20220722-x86-64,size=100,type=projects/midietz-one/zones/europe-west3-a/diskTypes/pd-balanced \
-
+gcloud compute instances get-serial-port-output vm-1 --zone=europe-west3-a | grep startup-script
+gcloud compute instances get-serial-port-output vm-2 --zone=europe-west3-a | grep startup-script
